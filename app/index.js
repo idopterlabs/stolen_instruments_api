@@ -14,7 +14,12 @@ app.get("/search", auth, (req, res) => {
   // Returns true for all model + string total character
   // count which are even
   const isStolen = !!(("" + model + year).length % 2);
-  res.json({ isStolen });
+  setTimeout(() => {
+    res.json({ isStolen });
+  }, randomSleep());
 });
 
+function randomSleep() {
+  return Math.floor(Math.random() * 7) * 1000;
+}
 module.exports = app;
