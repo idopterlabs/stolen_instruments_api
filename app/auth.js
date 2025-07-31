@@ -8,12 +8,14 @@ const auth = (req, res, next) => {
   const accessToken = req.get("X-ACCESS-TOKEN");
 
   if (!accessToken) {
+    res.status(403)
     res.json({ error: "Missing access token" });
     return;
   }
 
   if (accessToken != authToken) {
-    res.json({ error: "Invalid access token" });
+    res.status(401)
+    res.json({error: "Invalid access token" });
     return;
   }
 
